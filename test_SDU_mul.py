@@ -36,13 +36,13 @@ args = parser.parse_args()
 
 #################### debugging용 ###################
 
-args.csvpath = 'Datasets/DS_SD_DB1_origin_test/'  # 24.09.23 SDDB-2 test에 맞춰 변경함
-args.origin_path = 'Datasets/images/SD_DB1_original/'  # 24.09.23 SDDB-2 test에 맞춰 변경함
-args.test_path = 'D:/DION4FR/mask_change/output/SDdb-2/test_result/'  # 24.09.23 SDDB-2 test에 맞춰 변경함
-args.savepath = 'D:/DION4FR/mask_change/output/SDdb-2/foreer/'  # 24.09.23 SDDB-2 test에 맞춰 변경함
+args.csvpath = '/content/drive/MyDrive/Recognition/Datasets/DS_SD_DB2_origin_test/'  # 24.09.23 SDdb-1
+args.origin_path = '/content/drive/MyDrive/Recognition/Datasets/SD_DB2_original/'  # 24.09.23 SDDB-1
+args.test_path = '/content/drive/MyDrive/output/SDdb-1/test_result/'  # 24.09.23 SDDB-1
+args.savepath = '/content/drive/MyDrive/output/SDdb-1/foreer/'  # 24.09.23 SDDB-1
 args.savenm = 'real_SDU_B_SD_DB2_original_shift_matching.csv'
 args.savenm_total = 'total_SDU_B_SD_DB2_original_shift_matching.csv'
-args.model_path = 'Output/SDU_A/checkpoints/'  # 24.09.23 SDDB-2 test에 맞춰 변경함
+args.model_path = '/content/drive/MyDrive/Recognition/SDU_B/checkpoints/'  # 24.09.23 SDDB-1
 
 #################### debugging용 ###################
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
         model_ft = model_ft.to(device)
         # print(model_ft.eval())
 
-        epoch_list = list(range(150, 550, 50))  # 24.09.23 SDDB-2 test에 맞춰 변경함
+        epoch_list = list(range(200, 550, 50))  # 24.09.23 SDDB-1
 
         for epoch in epoch_list:
             print(epoch, "epoch start!")
