@@ -106,7 +106,7 @@ def test_model(model,epoch):
     train_ds = FingerveinDataset_test_zeros(tds, testimgpath, transform=tform, Use_blendset=False)     # 0 ~ 1로 정규화
     #-1~1
     #train_ds = FingerveinDataset_test(tds, transform=tform)  # 0 ~ 1로 정규화
-    dataloader = DataLoader(train_ds, batch_size=1)
+    dataloader = DataLoader(train_ds, batch_size=1, num_workers=4)
     totallen = len(tds)
 
     # Iterate over data.
