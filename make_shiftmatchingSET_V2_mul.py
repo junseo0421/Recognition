@@ -18,7 +18,7 @@ join = os.path.join
 ## output_path
 # for i in range(700, 1220, 20):
 
-base_path = '/content/drive/MyDrive/output/SDdb-1/test_result'  # 24.09.23 SDdb-1
+base_path = '/content/drive/MyDrive/musical-octo-robot/output/SDdb-1/test_result'  # 24.09.23 SDdb-1
 
 def save_img(img,fol,file):
     v_output = img.astype('uint8')
