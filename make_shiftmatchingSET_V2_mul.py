@@ -18,7 +18,7 @@ join = os.path.join
 ## output_path
 # for i in range(700, 1220, 20):
 
-base_path = '/content/drive/MyDrive/musical-octo-robot/output/SDdb-1/test_result'  # 24.09.23 SDdb-1
+base_path = '/content/drive/MyDrive/output/SDdb-1/test_result'  # 24.09.23 SDdb-1
 
 def save_img(img,fol,file):
     v_output = img.astype('uint8')
@@ -46,7 +46,7 @@ def make_aug_set(only_train=False):
 
         save_img(v[:, 32:], directorys[2],'3_' + paths[1][2:])
 
-epoch_list = list(range(200, 550, 50))  # 24.09.23 SDdb-1
+epoch_list = list(range(250, 550, 50))  # 24.09.23 SDdb-1
 
 for epoch in epoch_list:
     ds = glob(join(base_path, f'epoch_{epoch}'), '*/*', True)  # 해당 경로에 복원된 images(Test images) 넣기
