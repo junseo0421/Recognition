@@ -18,6 +18,7 @@ import sys
 import argparse
 
 import timm
+join = os.path.join
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--csvpath',type=str)
@@ -91,7 +92,7 @@ tform=transforms.Compose([
     ])
 
 #test (make csv output)
-def test_model(model,epoch):
+def test_model(model, epoch, testimgpath, savecsvpath):
     print('TEST START')
     print('-' * 10)
 
