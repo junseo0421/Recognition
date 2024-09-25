@@ -41,8 +41,8 @@ args.csvpath = '/content/drive/MyDrive/Recognition/Datasets/DS_SD_DB2_origin_tes
 args.origin_path = '/content/drive/MyDrive/Recognition/Datasets/SD_DB2_original/'  # 24.09.23 SDDB-1
 args.test_path = '/content/drive/MyDrive/output/SDdb-1/test_result/'  # 24.09.23 SDDB-1
 args.savepath = '/content/drive/MyDrive/output/SDdb-1/foreer/'  # 24.09.23 SDDB-1
-args.savenm = 'real_SDU_B_SD_DB2_original_shift_matching.csv'
-args.savenm_total = 'total_SDU_B_SD_DB2_original_shift_matching.csv'
+args.savenm = 'test.csv'
+args.savenm_total = 'testrttt.csv'
 args.model_path = '/content/drive/MyDrive/Recognition/SDU_B/checkpoints/'  # 24.09.23 SDDB-1
 
 #################### debugging용 ###################
