@@ -340,8 +340,8 @@ class FingerveinDataset_test_zeros(Dataset):
             idx = idx.tolist()
 
         cls=int(self.dslist[idx][0])  # class label
-        img_name1=self.dslist[idx][1]
-        img_name2=self.dslist[idx][2]
+        img_name1= '/content/' + self.dslist[idx][1]
+        img_name2= '/content/' + self.dslist[idx][2]
 
         # shift matching 대상들 특정
 
