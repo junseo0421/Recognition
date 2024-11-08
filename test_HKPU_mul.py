@@ -36,14 +36,23 @@ args = parser.parse_args()
 
 
 #################### debugging용 ###################
+# # 24.09.19 HKDB-1 test에 맞춰 변경함
+# args.csvpath = '/content/Datasets/DS_TEST_bad(B)/' 
+# args.origin_path = '/content/Datasets/images/t2_kj/'  
+# args.test_path = '/content/drive/MyDrive/perceptual/output/HKdb-1/test_result/'  
+# args.savepath = '/content/drive/MyDrive/perceptual/output/HKdb-1/foreer/'  
+# args.savenm = 'test.csv'
+# args.savenm_total = 'testrttt.csv'
+# args.model_path = '/content/Output/HKPU_B/checkpoints/'
 
-args.csvpath = 'Datasets/DS_TEST_bad(B)/'  # 24.09.19 HKDB-1 test에 맞춰 변경함
-args.origin_path = 'Datasets/images/t2_kj/'  # 24.09.19 HKDB-1 test에 맞춰 변경함
-args.test_path = 'D:/DION4FR/mask_change/output/HKdb-1/test_result/'  # 24.09.19 HKDB-1 test에 맞춰 변경함
-args.savepath = 'D:/DION4FR/mask_change/output/HKdb-1/foreer/'  # 24.09.19 HKDB-1 test에 맞춰 변경함
+# 24.11.08 HKdb-2
+args.csvpath = '/content/Datasets/DS_TEST_bad(A)/' 
+args.origin_path = '/content/Datasets/images/t1_kj/' 
+args.test_path = '/content/drive/MyDrive/perceptual/output/HKdb-2/test_result/' 
+args.savepath = '/content/drive/MyDrive/perceptual/output/HKdb-2/foreer/' 
 args.savenm = 'test.csv'
 args.savenm_total = 'testrttt.csv'
-args.model_path = 'Output/HKPU_A/checkpoints/'
+args.model_path = '/content/Output/HKPU_A/checkpoints/'  
 
 #################### debugging용 ###################
 
