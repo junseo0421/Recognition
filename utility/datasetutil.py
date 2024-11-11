@@ -97,6 +97,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds = csv2list(csvname)
     files = glob(path, '*/*')
     files = [x.replace('\\', '/') for x in files]
+    print(files)
     ds_np = np.array(ds)
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
@@ -104,6 +105,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     # list에서 등록영상만 제거
     for x in ds_np:
         x = x.replace("/content/", "")
+        print(x)
         files.remove(x)  # list의 형태와 일치시킴
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
