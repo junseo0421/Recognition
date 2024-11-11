@@ -106,7 +106,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
 
-    # ds_np_return = ds_np_return.astype('U80')  # 충분한 길이로 설정
+    ds_np_return = ds_np_return.astype('U80')  # 충분한 길이로 설정
 
     # list에서 등록영상만 제거
     for x in ds_np:
