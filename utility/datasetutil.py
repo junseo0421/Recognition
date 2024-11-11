@@ -103,7 +103,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds_np_return = np.array(ds)
     # list에서 등록영상만 제거
     for x in ds_np:
-        files.remove(x)
+        files.remove(x.replace("/content/", ""))  # list의 형태와 일치시킴
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
         fpfiles = copy.deepcopy(files)
