@@ -330,9 +330,9 @@ class FingerveinDataset_test_zeros(Dataset):
     # shift matching 대상들 특정
     def make_Matching_files(self,filenames):
         # print("filenames : ", filenames)  #  Datasets/images/t2_kj\157\0_79_1_f1.bmp
-        paths_for_matching = split(filenames, "\\")  # Datasets/images/t2_kj, 157, 0_79_1_f1.bmp
+        paths_for_matching = filenames.split("\\")  # Datasets/images/t2_kj, 157, 0_79_1_f1.bmp
         directory = paths_for_matching[-2]
-        GB = paths_for_matching[3][1:]
+        GB = paths_for_matching[2][1:]
         files = glob(self.folder + '/' + directory, '*')
         M_mask = np.where(np.char.find(files, GB) >= 0)
 
