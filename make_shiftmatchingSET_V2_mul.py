@@ -33,9 +33,9 @@ def make_aug_set(only_train=False):
         src = cv2.imread(data, cv2.IMREAD_COLOR)
         img = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
 
-        directorys = paths[0].split('\\')
+        directorys = paths[0].split('/')
         print(directorys)
-        mkdir(output_path + directorys[2])
+        mkdir(output_path + directorys[-1])
 
         # 지정맥 이미지는 Hue(색상) ,Saturation(채도), Value(명도) 가운데 Value만 값이 있음
         # 색상과 채도가 없는경우에는 굳이 HSV 로 바꾸지 않고 Gray로 읽어도 같은 값
@@ -43,11 +43,11 @@ def make_aug_set(only_train=False):
 
 
         ## 좌 센터 우 (비율은 안맞음)
-        save_img(v[:, :160], directorys[2], '1_' + paths[1][2:])
+        save_img(v[:, :160], directorys[-1], '1_' + paths[1][2:])
 
-        save_img(v[:, 32:160], directorys[2], '2_' + paths[1][2:])
+        save_img(v[:, 32:160], directorys[-1], '2_' + paths[1][2:])
 
-        save_img(v[:, 32:], directorys[2],'3_' + paths[1][2:])
+        save_img(v[:, 32:], directorys[-1],'3_' + paths[1][2:])
 
 epoch_list = list(range(350, 750, 50))  # 24.11.11 HKdb-1
 
