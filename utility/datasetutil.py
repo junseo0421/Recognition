@@ -333,6 +333,7 @@ class FingerveinDataset_test_zeros(Dataset):
         directory = paths_for_matching[0][-3:]
         GB = paths_for_matching[1][1:]
         files = glob(self.folder + '/' + directory, '*')
+        print("files : ", files)
         M_mask = np.where(np.char.find(files, GB) >= 0)
 
         return np.array(files)[M_mask]
