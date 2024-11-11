@@ -107,9 +107,8 @@ def test_model(model, epoch, testimgpath, savecsvpath):
 
     model.eval()   # Set model to evaluate mode
     impo_ds = imposter_test_ds(impcsvname, path, numofcls, numofclsfile)
-    tds = auth_ds + impo_ds
+    tds = auth_ds + impo_ds  # Datasets/ ...
 
-    print("tds : ", tds)
     # tds = auth_ds
     # tds = impo_ds
     # pytorch dataset

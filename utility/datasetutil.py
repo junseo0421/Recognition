@@ -306,7 +306,7 @@ class FingerveinDataset_test(Dataset):
             idx = idx.tolist()
 
         cls=int(self.dslist[idx][0])
-        img_name1=self.dslist[idx][1]
+        img_name1=self.dslist[idx][1]  
         img_name2=self.dslist[idx][2]
 
         img1 = iio.imread(img_name1)
@@ -319,7 +319,7 @@ class FingerveinDataset_test(Dataset):
 # 0 ~ 1로 정규화
 class FingerveinDataset_test_zeros(Dataset):
     def __init__(self,dslist,path,transform=None,Use_blendset=False):
-        self.dslist = dslist
+        self.dslist = dslist  
         self.folder = path
         self.transform = transform
         self.Use_blendset = Use_blendset
@@ -329,10 +329,10 @@ class FingerveinDataset_test_zeros(Dataset):
 
     # shift matching 대상들 특정
     def make_Matching_files(self,filenames):
-        print("filenames : ", filenames)
-        paths_for_matching = split(filenames)
-        directory = paths_for_matching[0][-3:]
-        GB = paths_for_matching[1][1:]
+        # print("filenames : ", filenames)  #  Datasets/images/t2_kj\157\0_79_1_f1.bmp
+        paths_for_matching = split(filenames, "\\")  # Datasets/images/t2_kj, 157, 0_79_1_f1.bmp
+        directory = paths_for_matching[-2]
+        GB = paths_for_matching[3][1:]
         files = glob(self.folder + '/' + directory, '*')
         M_mask = np.where(np.char.find(files, GB) >= 0)
 
@@ -343,7 +343,7 @@ class FingerveinDataset_test_zeros(Dataset):
             idx = idx.tolist()
 
         cls=int(self.dslist[idx][0])  # class label
-        img_name1= self.dslist[idx][1]
+        img_name1= self.dslist[idx][1]  # Datasets/ ...
         img_name2= self.dslist[idx][2]
 
         # shift matching 대상들 특정
