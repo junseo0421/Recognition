@@ -329,11 +329,11 @@ class FingerveinDataset_test_zeros(Dataset):
 
     # shift matching 대상들 특정
     def make_Matching_files(self,filenames):
+        print("filenames : ", filenames)
         paths_for_matching = split(filenames)
         directory = paths_for_matching[0][-3:]
         GB = paths_for_matching[1][1:]
         files = glob(self.folder + '/' + directory, '*')
-        print("files : ", files)
         M_mask = np.where(np.char.find(files, GB) >= 0)
 
         return np.array(files)[M_mask]
