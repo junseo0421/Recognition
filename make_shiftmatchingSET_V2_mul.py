@@ -50,6 +50,7 @@ def make_aug_set(only_train=False):
 epoch_list = list(range(350, 750, 50))  # 24.11.11 HKdb-1
 
 for epoch in epoch_list:
+    print("Start epoch : ", epoch)
     ds = glob(join(base_path, f'epoch_{epoch}'), '*/*', True)  # 해당 경로에 복원된 images(Test images) 넣기
     output_path = join(base_path, f'epoch_{epoch}_shift_ver2/')
     make_aug_set(only_train=False)
