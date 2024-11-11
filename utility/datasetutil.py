@@ -105,6 +105,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
+    ds_np_return = ds_np_return.astype('U80')
     ds_np_return[:, 1] = "/content/" + ds_np_return[:, 1]
 
     # ds_np_return[:, 1] = ds_np_return[:, 1].astype('U80')  # 충분한 길이로 설정
