@@ -105,8 +105,9 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
+    ds_np_return[:, 1] = "/content/" + ds_np_return[:, 1]
 
-    ds_np_return[:, 1] = ds_np_return[:, 1].astype('U80')  # 충분한 길이로 설정
+    # ds_np_return[:, 1] = ds_np_return[:, 1].astype('U80')  # 충분한 길이로 설정
 
     # list에서 등록영상만 제거
     for x in ds_np:
@@ -117,7 +118,6 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
         del fpfiles[numofclsfile * (i):numofclsfile * (i + 1)]
         print("ds_np_return :", ds_np_return)
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 0] = 1
-        ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1] = np.char.add("/content/" + ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1])
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 2] = fpfiles
 
     return ds_np_return.tolist()
