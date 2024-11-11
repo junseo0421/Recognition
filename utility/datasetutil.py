@@ -70,7 +70,8 @@ def authentic_ds(csvname):
     register_ds=csv2list(csvname)
     for i,x in enumerate(register_ds):
         register_ds[i][0]=0
-        register_ds[i][1]=join("/content/", register_ds[i][1])  # /content/... 로 만드는 작업
+        register_ds[i][1]=join("/content/", register_ds[i][1])
+        register_ds[i][2]=join("/content/", register_ds[i][2])  # /content/... 로 만드는 작업
     return register_ds
 
 
