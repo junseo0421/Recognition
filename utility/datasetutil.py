@@ -19,6 +19,8 @@ import skimage.color as skiC
 import utility.dtype as dtype
 from torch.utils.data import Dataset
 
+join = os.path.join
+
 import matplotlib.cm as cm
 
 from PIL import Image
@@ -94,19 +96,16 @@ def imposter_ds(csvname, path, numofcls, numofclsfile):
 
 
 def imposter_test_ds(csvname, path, numofcls, numofclsfile):
-    ds = csv2list(csvname)
+    ds = csv2list(csvname)  # Dataset/ ...
     files = glob(path, '*/*')
-    files = [x.replace('\\', '/') for x in files]
-    print(files)
+    files = [x.replace('\\', '/') for x in files]  # /content/ ...
     ds_np = np.array(ds)
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
     # list에서 등록영상만 제거
     for x in ds_np:
-        x = x.replace("/content/", "")
-        print(x)
-        files.remove(x)  # list의 형태와 일치시킴
+        files.remove(join("/content/", x))  # list의 형태와 일치시킴
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
         fpfiles = copy.deepcopy(files)
