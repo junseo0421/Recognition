@@ -145,7 +145,7 @@ def test_model(model, epoch, testimgpath, savecsvpath):
                      [labels[0],filepath[0][0],filepath[1][0],loweset_val[0],loweset_val[1]])
 
 
-            if i%5==0 and i>0:
+            if i%100==0 and i>0:
                 print(str(i) + '/' + str(totallen) + ' Finished!')
             elif i==totallen-1:
                 print(str(i) + '/' + str(totallen) + ' Finished!')
