@@ -28,13 +28,11 @@ def save_img(img,fol,file):
 def make_aug_set(only_train=False):
     for i, data in enumerate(ds):
         paths = split(data)
-        print(paths)
 
         src = cv2.imread(data, cv2.IMREAD_COLOR)
         img = cv2.cvtColor(src, cv2.COLOR_BGR2HSV)
 
         directorys = paths[0].split('/')
-        print(directorys)
         mkdir(output_path + directorys[-1])
 
         # 지정맥 이미지는 Hue(색상) ,Saturation(채도), Value(명도) 가운데 Value만 값이 있음
