@@ -70,7 +70,7 @@ def authentic_ds(csvname):
     register_ds=csv2list(csvname)
     for i,x in enumerate(register_ds):
         register_ds[i][0]=0
-        register_ds[i][1]=join("/content/", register_ds[i][1])
+        register_ds[i][1]=join("/content/", register_ds[i][1])  # /content/... 로 만드는 작업
     return register_ds
 
 
@@ -109,7 +109,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
         files.remove(join("/content/", x))  # list의 형태와 일치시킴
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
-        fpfiles = copy.deepcopy(files)
+        fpfiles = copy.deepcopy(files)  # /content/ ...
         del fpfiles[numofclsfile * (i):numofclsfile * (i + 1)]
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 0] = 1
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 2] = fpfiles
