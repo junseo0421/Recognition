@@ -116,7 +116,7 @@ def imposter_test_ds(csvname, path, numofcls, numofclsfile):
         fpfiles = copy.deepcopy(files)  # /content/ ...
         del fpfiles[numofclsfile * (i):numofclsfile * (i + 1)]
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 0] = 1
-        ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1] = np.char.add("/content/" + ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1])
+        ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1] = ["/content/" + ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 1]]
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 2] = fpfiles
 
     return ds_np_return.tolist()
