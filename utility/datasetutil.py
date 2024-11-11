@@ -99,20 +99,20 @@ def imposter_ds(csvname, path, numofcls, numofclsfile):
 
 def imposter_test_ds(csvname, path, numofcls, numofclsfile):
     ds = csv2list(csvname)  # Dataset/ ...
+
+    for row in ds:
+        row[1] = "/content/" + row[1]
+
     files = glob(path, '*/*')
     files = [x.replace('\\', '/') for x in files]  # /content/ ...
     ds_np = np.array(ds)
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
-    ds_np_return = ds_np_return.astype('U80')
-    ds_np_return[:, 1] = "/content/" + ds_np_return[:, 1]
-
-    # ds_np_return[:, 1] = ds_np_return[:, 1].astype('U80')  # 충분한 길이로 설정
 
     # list에서 등록영상만 제거
     for x in ds_np:
-        files.remove(join("/content/", x))  # list의 형태와 일치시킴
+        files.remove(x)  # list의 형태와 일치시킴
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
         fpfiles = copy.deepcopy(files)  # /content/ ...
