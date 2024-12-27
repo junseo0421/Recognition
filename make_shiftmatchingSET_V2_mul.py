@@ -18,7 +18,7 @@ join = os.path.join
 ## output_path
 # for i in range(700, 1220, 20):
 
-base_path = '/content/drive/MyDrive/perceptual/output/HKdb-1/test_result'  # 24.11.11 HKdb-1
+base_path = '/content/drive/MyDrive/dq_unet_sep4_sobel_weight_20/output/HKdb-2/test_result'  # 24.11.11 HKdb-1
 
 def save_img(img,fol,file):
     v_output = img.astype('uint8')
@@ -47,7 +47,7 @@ def make_aug_set(only_train=False):
 
         save_img(v[:, 32:], directorys[-1],'3_' + paths[1][2:])
 
-epoch_list = list(range(350, 750, 50))  # 24.11.11 HKdb-1
+epoch_list = list(range(200, 550, 50))
 
 for epoch in epoch_list:
     print("Start epoch : ", epoch)

@@ -19,8 +19,6 @@ import skimage.color as skiC
 import utility.dtype as dtype
 from torch.utils.data import Dataset
 
-join = os.path.join
-
 import matplotlib.cm as cm
 
 from PIL import Image
@@ -70,8 +68,6 @@ def authentic_ds(csvname):
     register_ds=csv2list(csvname)
     for i,x in enumerate(register_ds):
         register_ds[i][0]=0
-        register_ds[i][1]=join("/content/", register_ds[i][1])
-        register_ds[i][2]=join("/content/", register_ds[i][2])  # /content/... 로 만드는 작업
     return register_ds
 
 
@@ -98,29 +94,24 @@ def imposter_ds(csvname, path, numofcls, numofclsfile):
 
 
 def imposter_test_ds(csvname, path, numofcls, numofclsfile):
-    ds = csv2list(csvname)  # Dataset/ ...
-
-    for row in ds:
-        row[1] = "/content/" + row[1]
-
+    ds = csv2list(csvname)
     files = glob(path, '*/*')
-    files = [x.replace('\\', '/') for x in files]  # /content/ ...
+    files = [x.replace('\\', '/') for x in files]
     ds_np = np.array(ds)
     ds_np = np.unique(ds_np[:, 1])
     ds_np = ds_np.tolist()
     ds_np_return = np.array(ds)
-
     # list에서 등록영상만 제거
     for x in ds_np:
-        files.remove(x)  # list의 형태와 일치시킴
+        files.remove(x)
     # 같은 클래스 중복안되게 제거후 삽입  삽입
     for i in range(numofcls):
-        fpfiles = copy.deepcopy(files)  # /content/ ...
+        fpfiles = copy.deepcopy(files)
         del fpfiles[numofclsfile * (i):numofclsfile * (i + 1)]
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 0] = 1
         ds_np_return[numofclsfile * (i) * (numofcls - 1):numofclsfile * (i + 1) * (numofcls - 1), 2] = fpfiles
 
-    return ds_np_return.tolist()  # /content/ ...
+    return ds_np_return.tolist()
 
 
 def imposter_ds_for_gradcam(csvname):
@@ -154,17 +145,17 @@ def split(path):
   name, ext = os.path.splitext(name_ext)
   return dir, name, ext
 
-def make_composite_image(img1,img2):
+def make_composite_image(img1,img2):  # input 형태 (H, W, C)
     #이미지 사이즈 부터 체크
     if img1.shape[0]!=224 and img1.shape[1]!=224:
-        img1 = skiT.resize(img1, (224, 224))
+        img1 = skiT.resize(img1, (224, 224))  # If dim is not provided, the number of channels is preserved / 0~1로 scaling도 포함
 
     # 채널 체크(gray scale 이미지이면 reshape / channel이 3이면 1채널로
     if len(img1.shape)<3:
-        img1 = np.reshape(img1, newshape=(224, 224, 1))
+        img1 = np.reshape(img1, newshape=(224, 224, 1))  # 행 우선 순서 (row-major order)로 배열을 읽고 변환
     else:
         if img1.shape[2] > 1:
-            img1 = skiC.rgb2gray(img1)
+            img1 = skiC.rgb2gray(img1)  # final dimension denotes channels.
             img1 = np.reshape(img1, newshape=(224, 224, 1))
 
     # 이미지 사이즈 부터 체크
@@ -175,7 +166,7 @@ def make_composite_image(img1,img2):
         img2 = np.reshape(img2, newshape=(224, 224, 1))
     else:
          if img2.shape[2] > 1:
-            img2 = skiC.rgb2gray(img2)
+            img2 = skiC.rgb2gray(img2)  # final dimension denotes channels.
             img2 = np.reshape(img2, newshape=(224, 224, 1))
 
     # 3 채널 #height 기준 concatenation)
@@ -313,7 +304,7 @@ class FingerveinDataset_test(Dataset):
             idx = idx.tolist()
 
         cls=int(self.dslist[idx][0])
-        img_name1=self.dslist[idx][1]  
+        img_name1=self.dslist[idx][1]
         img_name2=self.dslist[idx][2]
 
         img1 = iio.imread(img_name1)
@@ -326,7 +317,7 @@ class FingerveinDataset_test(Dataset):
 # 0 ~ 1로 정규화
 class FingerveinDataset_test_zeros(Dataset):
     def __init__(self,dslist,path,transform=None,Use_blendset=False):
-        self.dslist = dslist  
+        self.dslist = dslist
         self.folder = path
         self.transform = transform
         self.Use_blendset = Use_blendset
@@ -336,10 +327,9 @@ class FingerveinDataset_test_zeros(Dataset):
 
     # shift matching 대상들 특정
     def make_Matching_files(self,filenames):
-        # print("filenames : ", filenames)  #  Datasets/images/t2_kj\157\0_79_1_f1.bmp
-        paths_for_matching = filenames.replace("\\", "/").split("/")  # Datasets, images, t2_kj, 157, 0_79_1_f1.bmp
-        directory = paths_for_matching[-2]
-        GB = paths_for_matching[-1][1:]
+        paths_for_matching = split(filenames)
+        directory = paths_for_matching[0][-3:]
+        GB = paths_for_matching[1][1:]
         files = glob(self.folder + '/' + directory, '*')
         M_mask = np.where(np.char.find(files, GB) >= 0)
 
@@ -350,11 +340,10 @@ class FingerveinDataset_test_zeros(Dataset):
             idx = idx.tolist()
 
         cls=int(self.dslist[idx][0])  # class label
-        img_name1= self.dslist[idx][1]  # Datasets/ ...
-        img_name2= self.dslist[idx][2]
+        img_name1=self.dslist[idx][1]
+        img_name2=self.dslist[idx][2]
 
         # shift matching 대상들 특정
-
         matching_files= self.make_Matching_files(img_name2)
 
         #등록영상을 조도 조절한 것으로 쓰려면 False로

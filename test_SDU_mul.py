@@ -37,13 +37,13 @@ args = parser.parse_args()
 
 #################### debugging용 ###################
 
-args.csvpath = '/content/drive/MyDrive/Recognition/Datasets/DS_SD_DB2_origin_test/'  # 24.09.23 SDdb-1
-args.origin_path = '/content/drive/MyDrive/Recognition/Datasets/SD_DB2_original/'  # 24.09.23 SDDB-1
-args.test_path = '/content/drive/MyDrive/output/SDdb-1/test_result/'  # 24.09.23 SDDB-1
-args.savepath = '/content/drive/MyDrive/output/SDdb-1/foreer/'  # 24.09.23 SDDB-1
+args.csvpath = '/content/Datasets/DS_SD_DB2_origin_test/'  # 24.11.11 SDdb-1
+args.origin_path = '/content/Datasets/images/SD_DB2_original/'  
+args.test_path = '/content/drive/MyDrive/perceptual/output/SDdb-1/test_result/' 
+args.savepath = '/content/drive/MyDrive/perceptual/output/SDdb-1/foreer/'  
 args.savenm = 'test.csv'
 args.savenm_total = 'testrttt.csv'
-args.model_path = '/content/drive/MyDrive/Recognition/SDU_B/checkpoints/'  # 24.09.23 SDDB-1
+args.model_path = '/content/Output/SDU_B/checkpoints/'  
 
 #################### debugging용 ###################
 
@@ -133,7 +133,7 @@ def test_model(model, epoch, testimgpath, savecsvpath):
                      [labels[0], filepath[0][0],filepath[1][0], loweset_val[0], loweset_val[1]])
 
 
-            if i%5==0 and i>0:
+            if i%100==0 and i>0:
                 print(str(i) + '/' + str(totallen) + ' Finished!')
             elif i==totallen-1:
                 print(str(i) + '/' + str(totallen) + ' Finished!')
@@ -147,7 +147,7 @@ if __name__ == '__main__':
         model_ft = model_ft.to(device)
         # print(model_ft.eval())
 
-        epoch_list = list(range(200, 550, 50))  # 24.09.23 SDDB-1
+        epoch_list = list(range(350, 750, 50))  # 24.11.11 SDDB-1
 
         for epoch in epoch_list:
             print(epoch, "epoch start!")
